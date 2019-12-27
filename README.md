@@ -9,3 +9,8 @@
 ```
 pip install django-location-field
 ```
+### Pillow
+
+```
+pip install Pillow
+```
