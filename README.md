@@ -14,3 +14,9 @@ pip install django-location-field
 ```
 pip install Pillow
 ```
+
+### Registraion
+
+```
+pip install django-registration
+```
