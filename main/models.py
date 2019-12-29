@@ -25,7 +25,9 @@ class User(AbstractUser):
         )
     photo = models.ImageField(upload_to='./media/profile_pics', height_field=None, width_field=None, blank=True, verbose_name = 'صورة شخصية')
 
-    phone_number = PhoneNumberField(blank=True, verbose_name = 'رقم الهاتف')  
+    phone_number = PhoneNumberField(blank=True, verbose_name = 'رقم الهاتف')
+
+    registration_date = models.DateField(null=True, blank=True, verbose_name = 'تاريخ إنشاء الحساب')
 
 
 class Service(models.Model):
