@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import EmailValidator
 from location_field.models.plain import PlainLocationField
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 gender_choices = [
@@ -23,6 +24,8 @@ class User(AbstractUser):
         verbose_name = 'الجنس'
         )
     photo = models.ImageField(upload_to='./media', height_field=None, width_field=None, blank=True, verbose_name = 'صورة شخصية')
+
+    phone_number = PhoneNumberField(blank=True)
     
 
 
