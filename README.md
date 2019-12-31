@@ -20,3 +20,13 @@ pip install Pillow
 ```
 pip install django-registration
 ```
+
+
+### Django Phone Number Field
+
+[GitHub Repo](https://github.com/stefanfoulis/django-phonenumber-field)
+
+```
+pip install django-phonenumber-field
+pip install phonenumbers
+```

@@ -15,7 +15,7 @@ import os
 
 
 ACCOUNT_ACTIVATION_DAYS = 3
-django.conf.settings.REGISTRATION_OPEN
+REGISTRATION_OPEN = True
 
 
 
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'location_field.apps.DefaultConfig',
+    'phonenumber_field',
 
 ]
 
