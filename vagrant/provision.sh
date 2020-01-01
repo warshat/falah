@@ -13,6 +13,10 @@ PIP=$VIRTUALENV_DIR/bin/pip
 apt-get update -y
 apt-get install -y virtualenv
 
+# Installing Apache 2 (setting up Apache2 and mod_wsgi for python 3)
+# https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/modwsgi/
+apt-get install -y apache2 libapache2-mod-wsgi-py3
+
 # Virtualenv setup for project
 su - vagrant -c "virtualenv --python=python3 $VIRTUALENV_DIR"
 
@@ -33,6 +37,21 @@ su - vagrant -c "cd $PROJECT_DIR && $PIP install -r requirements.txt"
 chmod a+x $PROJECT_DIR/manage.py
 
 
+
+
+# configure Apache and mod-wsgi
+# https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/modwsgi/
+cat << EOF >> /etc/apache2/apache2.conf
+WSGIScriptAlias / $PROJECT_DIR/$PROJECT_NAME/wsgi.py
+WSGIPythonHome $VIRTUALENV_DIR
+WSGIPythonPath $PROJECT_DIR
+
+<Directory $PROJECT_DIR/$PROJECT_NAME>
+<Files wsgi.py>
+Require all granted
+</Files>
+</Directory>
+EOF
 
 
 # Add a couple of aliases to manage.py into .bashrc
