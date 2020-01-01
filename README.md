@@ -1,32 +1,36 @@
 # falah
 
-## Installed Python Modules:
+## Setup with [Vagrant](https://www.vagrantup.com/)
 
-### django-location-field
+### Dependencies:
+- Install VirtualBox
+- Install Vagrant
 
-[link](https://github.com/caioariede/django-location-field)
+### Bringing up the website:
 
+- clone the repository.
+- Navigate to it (ex. ```cd falah```).
+- Run this command:
 ```
-pip install django-location-field
-```
-### Pillow
-
-```
-pip install Pillow
-```
-
-### Registraion
-
-```
-pip install django-registration
+vagrant up
 ```
 
+A virtual machine (VM) is now active (using VirtualBox). It's running Ubuntu 18.04.3 
+and has all needed python modules and system configuration to run the website.
 
-### Django Phone Number Field
-
-[GitHub Repo](https://github.com/stefanfoulis/django-phonenumber-field)
+- Login to the VM using ssh:
 
 ```
-pip install django-phonenumber-field
-pip install phonenumbers
+vagrant ss
 ```
+
+- Run Django server on ```0.0.0.0``` port ```8000```:
+  
+```
+python manage.py runserver 0.0.0.0:8000
+```
+
+You can reach to the website on [localhost:8000/](localhost:8000/)
+
+This directory is synced with the VM so any changes you make here will affect 
+the VM.
