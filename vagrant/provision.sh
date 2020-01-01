@@ -42,9 +42,21 @@ chmod a+x $PROJECT_DIR/manage.py
 # configure Apache and mod-wsgi
 # https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/modwsgi/
 cat << EOF >> /etc/apache2/apache2.conf
+
+# Configure Apache to serve django static files
+
+Alias /media/ $PROJECT_DIR/media/
+Alias /static/ $PROJECT_DIR/static/
+
+<Directory $PROJECT_DIR/static>
+Require all granted
+</Directory>
+
+<Directory $PROJECT_DIR/media>
+Require all granted
+</Directory>
+
 WSGIScriptAlias / $PROJECT_DIR/$PROJECT_NAME/wsgi.py
-WSGIPythonHome $VIRTUALENV_DIR
-WSGIPythonPath $PROJECT_DIR
 
 <Directory $PROJECT_DIR/$PROJECT_NAME>
 <Files wsgi.py>

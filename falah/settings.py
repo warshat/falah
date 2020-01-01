@@ -35,7 +35,7 @@ AUTH_USER_MODEL = 'main.User'
 SECRET_KEY = '916ymkb7mna%71s0=ngi^x8vl&u1w&mf)t+x(8wo!m3%+3w1u$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -139,7 +139,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
 
 LOCATION_FIELD = {
     'map.provider': 'openstreetmap',
