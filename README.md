@@ -21,7 +21,7 @@ and has all needed python modules and system configuration to run the website.
 - Login to the VM using ssh:
 
 ```
-vagrant ss
+vagrant ssh
 ```
 
 - Run Django server on ```0.0.0.0``` port ```8000```:
