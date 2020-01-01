@@ -1,0 +1,6 @@
+Django==2.2.7
+Pillow==6.2.1
+django-registration==3.0.1
+django-location-field==2.1.0
+django-phonenumber-field==4.0.0
+phonenumbers==8.11.1
