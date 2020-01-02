@@ -24,13 +24,13 @@ and has all needed python modules and system configuration to run the website.
 vagrant ssh
 ```
 
-- Run Django server on ```0.0.0.0``` port ```8000```:
+- Run Django server:
   
 ```
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver
 ```
 
-You can reach to the website on [localhost:8000/](localhost:8000/)
+You can reach to the website on [localhost:8000/](localhost:8000/), or YOUR_IP:8000.
 
 This directory is synced with the VM so any changes you make here will affect 
 the VM.
