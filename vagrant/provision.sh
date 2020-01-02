@@ -37,33 +37,48 @@ su - vagrant -c "cd $PROJECT_DIR && $PIP install -r requirements.txt"
 chmod a+x $PROJECT_DIR/manage.py
 
 
-
-
 # configure Apache and mod-wsgi
-# https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/modwsgi/
-cat << EOF >> /etc/apache2/apache2.conf
+# Create a Django virtual host
+touch /etc/apache2/sites-available/$PROJECT_NAME.conf
 
-# Configure Apache to serve django static files
+cat <<EOT >> /etc/apache2/sites-available/$PROJECT_NAME.conf
+<VirtualHost *:80>
 
-Alias /media/ $PROJECT_DIR/media/
-Alias /static/ $PROJECT_DIR/static/
+    WSGIDaemonProcess $PROJECT_NAME python-home=$VIRTUALENV_DIR python-path=$PROJECT_DIR
+    WSGIProcessGroup $PROJECT_NAME
 
-<Directory $PROJECT_DIR/static>
-Require all granted
-</Directory>
+    Alias /media/ $PROJECT_DIR/media/
+    Alias /static/ $PROJECT_DIR/static/
 
-<Directory $PROJECT_DIR/media>
-Require all granted
-</Directory>
+    <Directory $PROJECT_DIR/static>
+    Require all granted
+    </Directory>
 
-WSGIScriptAlias / $PROJECT_DIR/$PROJECT_NAME/wsgi.py
+    <Directory $PROJECT_DIR/media>
+    Require all granted
+    </Directory>
 
-<Directory $PROJECT_DIR/$PROJECT_NAME>
-<Files wsgi.py>
-Require all granted
-</Files>
-</Directory>
-EOF
+    WSGIScriptAlias / $PROJECT_DIR/$PROJECT_NAME/wsgi.py
+    
+    <Directory $PROJECT_DIR/$PROJECT_NAME>
+    <Files wsgi.py>
+    Require all granted
+    </Files>
+    </Directory>
+
+</VirtualHost>
+EOT
+
+# disable the default virtual host config file i.e 000.default.conf
+a2dissite 000-default.conf
+
+# Enable your $PROJECT_NAME virtual host
+a2ensite $PROJECT_NAME
+
+# Restart apache web server to take effect the changes
+systemctl restart apache2
+#systemctl reload apache2
+
 
 
 # Add a couple of aliases to manage.py into .bashrc
