@@ -30,6 +30,13 @@ vagrant ssh
 python manage.py runserver
 ```
 
+- Everytime you update the static files (CSS, JS inside the apps), run the 
+following command:
+
+```
+python manage.py collectstatic
+```
+
 You can reach to the website on [localhost:8000/](localhost:8000/), or YOUR_IP:8000.
 
 This directory is synced with the VM so any changes you make here will affect 
