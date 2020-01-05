@@ -10,8 +10,21 @@ gender_choices = [
     ('female', 'أنثى')
 ]
 
+class Rate(models.Model):
+    rate = models.FloatField(default=0.0, verbose_name = 'التقييم')
+    number_votes = models.IntegerField(default=0, verbose_name = 'عدد الأصوات')
 
-class User(AbstractUser):
+    def vote(self, vote):
+        self.rate = (self.rate * self.number_votes +
+                     vote) / (self.number_votes+1)
+        self.number_votes += 1
+        return self.rate
+
+    class Meta:
+        abstract = True
+
+
+class User(Rate, AbstractUser):
     email = models.EmailField(null=True, blank=True, unique=True,
                               validators=[EmailValidator(message="your custom message")])
     birth_date = models.DateField(null=True, blank=True, verbose_name = 'تاريخ الميلاد')
@@ -29,28 +42,38 @@ class User(AbstractUser):
 
     registration_date = models.DateField(null=True, blank=True, verbose_name = 'تاريخ إنشاء الحساب')
 
+    is_worker = models.BooleanField(blank=True, default=False)
+    
+    def __str__(self):
+        str_value = self.first_name + self.last_name
+        if len(str_value) < 1:
+            str_value = self.username
+        return str_value
+
+class Worker(Rate):
+    user = models.ForeignKey(
+        'User',
+        on_delete=models.CASCADE,
+    )
+    service = models.ForeignKey(
+        'Service',
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name = 'المهنة',
+    )
+
+    def __str__(self):
+        return self.user
+    
+
+
 
 class Service(models.Model):
     name = models.CharField(max_length=255, null=True, verbose_name = 'المهنة')
-    description = models.CharField(max_length=255, null=True, verbose_name = 'وصف المهنة')
+    description = models.CharField(max_length=255, blank=True ,null=True, verbose_name = 'وصف المهنة')
     thumbnail = models.ImageField(upload_to='./media/service_thumbnails', height_field=None, width_field=None, blank=True, verbose_name = 'صورة توضيحية')
 
+    def __str__(self):
+        return self.name
+    
 
-class Rate(models.Model):
-    rate_as_worker = models.FloatField(default=0.0)
-    rate_as_owner = models.FloatField(default=0.0)
-    number_votes_worker = models.IntegerField(default=0)
-    number_votes_owner = models.IntegerField(default=0)
-
-    def vote_worker(self, vote):
-        self.rate_as_worker = (self.rate_as_worker * self.number_votes_worker +
-                               vote) / (self.number_votes_worker+1)
-        self.number_votes_worker += 1
-        return self.rate_as_worker
-
-    def vote_owner(self, vote):
-        self.rate_as_owner = (self.rate_as_owner * self.number_votes_owner +
-                               vote) / (self.number_votes_owner+1)
-        self.number_votes_owner += 1
-        return self.rate_as_owner
-        
