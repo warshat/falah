@@ -69,6 +69,14 @@ cat <<EOT >> /etc/apache2/sites-available/$PROJECT_NAME.conf
 </VirtualHost>
 EOT
 
+# Add a couple of aliases to manage.py into .bashrc
+cat << EOF >> /home/vagrant/.bashrc
+source $VIRTUALENV_DIR/bin/activate
+cd $PROJECT_DIR
+EOF
+
+usermod -a -G vagrant www-data
+
 # disable the default virtual host config file i.e 000.default.conf
 a2dissite 000-default.conf
 
@@ -78,11 +86,3 @@ a2ensite $PROJECT_NAME
 # Restart apache web server to take effect the changes
 systemctl restart apache2
 #systemctl reload apache2
-
-
-
-# Add a couple of aliases to manage.py into .bashrc
-cat << EOF >> /home/vagrant/.bashrc
-source $VIRTUALENV_DIR/bin/activate
-cd $PROJECT_DIR
-EOF
