@@ -72,7 +72,7 @@
 										<!-- <input type="date" class="form-control" name="subject" id="subject" placeholder="تاريخ الولادة" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" /> -->
 										{{form.birth_date}}
 									</div>
-								<input type="submit" value="إنشاء حساب" class="btn btn-theme pull-right">
+								
 								</div>
 
 
@@ -89,14 +89,40 @@
 										<!-- <input type="text" class="form-control" name="subject" id="subject" placeholder="تأكيد كلمة المرور" data-rule="minlen:4" /> -->
 										{{form.password2}}
 									</div>
-
-									<div class="field subject form-group">
-										<input type="checkbox" name="isWorker" id="isWorker" class="form-control"> 
-										<label for="isWorker"> إنشاء حساب عامل:</label>
-									</div>
-
 								</div>
 							</div>
+
+
+							<hr>
+							<br>
+							
+
+							<div class="span4">
+									
+								<div class="field subject form-group">
+									<h5 for="isWorker">هل تريد إنشاء حساب عامل أيضاً؟</h5>
+								
+								</div>
+
+
+								<div class="field subject form-group">
+								<input type="submit" value="إنشاء حساب" class="btn btn-theme pull-right">
+								</div>
+							</div>	
+
+
+							<div class="span1">
+							
+								<ul class="tg-list">
+									<input class="tgl tgl-ios" id="cb2" type="checkbox" />
+								<label class="tgl-btn" for="cb2"></label>
+								</ul>
+							</div>	
+
+
+
+							
+
 						</form>
 					</div>
 				</div>
