@@ -1,21 +1,22 @@
+{% load static %}
 <!DOCTYPE HTML>
 <html lang="ar">
 
 <head>
-
-   {% load static %}
-
 	<meta charset="utf-8">
 	<title>Falah</title>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
 	<link href="{% static "css/style.css" %}" rel="stylesheet">
 	<link href="{% static "color/default.css" %}" rel="stylesheet">
-	<link rel="{% static "shortcut icon" %}" href="img/favicon.ico">
+	<link rel="{% static "shortcut icon" %}" href={% static "img/favicon.ico" %}">
+	<link href="{% static "css/pikaday.css" %}" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+
+
 	<!-- navbar -->
 	<div class="navbar-wrapper">
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -52,27 +53,49 @@
 					<div class="cform" id="contact-form">
 						
 						<form action="" method="post" role="form" class="contactForm">
+						{% csrf_token %}
 							<div class="row">
 								<div class="span4">
 									<div class="field your-name form-group">
-										<input type="text" name="name" class="form-control" id="name" placeholder="الأسم" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-										<div class="validation"></div>
+										<!-- <input type="text" name="name" class="form-control" id="name" placeholder="اسم المستخدم" data-rule="minlen:4" data-msg="Please enter at least 4 chars" /> -->
+										{{form.username}}
 									</div>
-									<div class="field your-email form-group">
-										<input type="text" class="form-control" name="email" id="email" placeholder="أدخل البريد الإلكتروني الخاص بك" data-rule="email" data-msg="Please enter a valid email" />
-										<div class="validation"></div>
-									</div>
-									<div class="field subject form-group">
-										<input type="text" class="form-control" name="subject" id="subject" placeholder="أدخل كلمة المرور الخاصة بك" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-										<div class="validation"></div>
+									<div class="field your-name form-group">
+										<!-- <input type="text" class="form-control" name="email" id="email" placeholder="الاسم الأول" data-rule="email" data-msg="Please enter a valid email" /> -->
+										{{form.first_name}}
 									</div>
 									<div class="field subject form-group">
-										<input type="text" class="form-control" name="subject" id="subject" placeholder="أعد ادخال كلمة المرور للتأكيد" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-										<div class="validation"></div>
-										<input type="submit" value="إنشاء حساب" class="btn btn-theme pull-right">
+										<!-- <input type="password" class="form-control" name="password" id="password" placeholder="كلمة المرور" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />   -->
+										{{form.password1}}
 									</div>
+									<div class="field subject form-group">
+										<!-- <input type="date" class="form-control" name="subject" id="subject" placeholder="تاريخ الولادة" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" /> -->
+										{{form.birth_date}}
+									</div>
+								<input type="submit" value="إنشاء حساب" class="btn btn-theme pull-right">
 								</div>
-								
+
+
+								<div class="span4">
+									<div class="field subject form-group">
+										<!-- <input type="text" name="name" class="form-control" id="name" placeholder="البريد الإلكتروني" data-rule="minlen:4"/> -->
+										{{form.email}}
+									</div>
+									<div class="field subject  form-group">
+										<!-- <input type="text" class="form-control" name="email" id="email" placeholder="اسم العائلة" data-rule="email" /> -->
+										{{form.last_name}}
+									</div>
+									<div class="field subject form-group">
+										<!-- <input type="text" class="form-control" name="subject" id="subject" placeholder="تأكيد كلمة المرور" data-rule="minlen:4" /> -->
+										{{form.password2}}
+									</div>
+
+									<div class="field subject form-group">
+										<input type="checkbox" name="isWorker" id="isWorker" class="form-control"> 
+										<label for="isWorker"> إنشاء حساب عامل:</label>
+									</div>
+
+								</div>
 							</div>
 						</form>
 					</div>
@@ -81,7 +104,7 @@
 		</div>
 	</section>
 	
-	<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+	<!-- <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a> -->
 	<script src="{% static "js/jquery.js" %}"></script>
 	<script src="{% static "js/jquery.scrollTo.js" %}"></script>
 	<script src="{% static "js/jquery.nav.js" %}"></script>
@@ -94,7 +117,31 @@
 	<script src="{% static "js/animate.js" %}"></script>
 	<script src="{% static "js/custom.js" %}"></script>
 	<script src="{% static "contactform/contactform.js" %}"></script>
-
+	<script src="{% static "js/moment.js" %}"></script>
+    <script src="{% static "js/pikaday.js" %}"></script>
+	<script>
+		//moment.locale('ar');
+			var picker = new Pikaday({
+				 
+				field: document.getElementById('{{form.birth_date.id_for_label}}'),
+				firstDay: 1,
+				minDate: new Date(1900, 1, 1),
+				maxDate: new Date({%now "Y" %}, 12, 31),
+				yearRange: [1900,{%now "Y" %}],
+				format: 'YYYY-MM-DD',
+				isRTL: true,
+				i18n: {
+					previousMonth : 'الشهر السابق',
+					nextMonth     : 'الشهر التالي',
+					months        : ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
+					weekdays      : ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
+					weekdaysShort : ['حد','ثن','ثل','ربع','خمس','جمع','سبت']
+						},
+				onSelect: function() {
+					console.log(this.getMoment().format('Do MMMM YYYY'));
+				}
+			});
+		</script>
 </body>
 
 </html>
