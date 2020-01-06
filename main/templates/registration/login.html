@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+	<section id="contact" class="section green">
+		<div class="container">
+			<h4>تسجيل الدخول</h4>
+			
+			<div class="blankdivider30">
+			
+				<div class="row">
+					<div class="span12">
+						<div class="cform" id="contact-form">
+						
+
+							<form method="POST">
+								{% csrf_token %}
+								<div class="row">
+
+									<div class="span4">
+
+										
+									{% for field in form %}
+
+										<div class="field your-name form-group">
+											{{ field.errors }}
+										    {{ field }}
+											{% if field.help_text %}
+											<p class="help">{{ field.help_text|safe }}</p>
+											{% endif %}
+										</div>
+									{% endfor %}
+
+										<div class="field subject form-group">
+											
+											<button type="submit" class="btn btn-theme pull-right"> تسجيل الدخول </button>
+										</div>
+										
+										
+										<div class="field subject form-group">
+											<a target="blank" href="#">  نسيت الحساب؟ </a>
+										
+										</div>
+
+
+
+										<br>
+										<br>
+										<hr>
+
+										<div class="field subject form-group">
+											
+											<button type="submit" onclick="window.location = '{% url 'django_registration_register' %}' " class="btn btn-danger pull-right"> ليس لديك حساب؟ </button>
+										</div>
+
+										
+									
+									</div>
+
+
+									
+
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
+
+

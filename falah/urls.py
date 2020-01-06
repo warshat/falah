@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django_registration.backends.activation.views import RegistrationView
-from main.forms import UserForm
-
+from main.forms import UserForm, authentication_form
+from django.contrib.auth.views import LoginView
 urlpatterns = [
     path('accounts/register/',
         RegistrationView.as_view(
@@ -25,6 +25,14 @@ urlpatterns = [
         ),
         name='django_registration_register',
     ),
+
+        path('accounts/login/',
+        LoginView.as_view(
+            form_class=authentication_form
+        ),
+        name='django_registration_register',
+    ),
+    
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')), 
  #  path('', include('main.urls')),

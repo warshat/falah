@@ -1,46 +1,6 @@
-{% load static %}
-<!DOCTYPE HTML>
-<html lang="ar">
+{% extends 'main/base.html' %}
 
-<head>
-	<meta charset="utf-8">
-	<title>Falah</title>
-
-	<link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
-	<link href="{% static "css/style.css" %}" rel="stylesheet">
-	<link href="{% static "color/default.css" %}" rel="stylesheet">
-	<link rel="{% static "shortcut icon" %}" href={% static "img/favicon.ico" %}">
-	<link href="{% static "css/pikaday.css" %}" rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
-
-
-	<!-- navbar -->
-	<div class="navbar-wrapper">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- Responsive navbar -->
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-				</a>
-					<h1 class="brand"><a href="index.html">فلاح</a></h1>
-					<!-- navigation -->
-					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
-
-						<li><a title="home" href="#home">الرئيسية</a></li>
-						<li><a title="about" href="#about">عن الموقع</a></li>
-						<li><a title="help" href="#services">المساعدة</a></li>	
-							
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</div>
-	
+{% block content %}
 	
 	<section id="contact" class="section green">
 		<div class="container">
@@ -52,7 +12,7 @@
 				<div class="span12">
 					<div class="cform" id="contact-form">
 						
-						<form action="" method="post" role="form" class="contactForm">
+						<form method="POST">
 						{% csrf_token %}
 							<div class="row">
 								<div class="span4">
@@ -94,7 +54,7 @@
 
 
 							<hr>
-							<br>
+						
 							
 
 							<div class="span4">
@@ -104,9 +64,14 @@
 								
 								</div>
 
+									<div class="field subject form-group">
+										<!-- <input type="text" class="form-control" name="subject" id="subject" placeholder="تأكيد كلمة المرور" data-rule="minlen:4" /> -->
+										<h5 for="{{form.tos.id_for_label}}">أوافق على   <a target="blank" href="#">شروط الاستخدام</a></h5>
+									</div>
 
 								<div class="field subject form-group">
-								<input type="submit" value="إنشاء حساب" class="btn btn-theme pull-right">
+								<br>
+								<button type="submit" class="btn btn-theme pull-right">إنشاء الحساب</button>
 								</div>
 							</div>	
 
@@ -117,12 +82,12 @@
 									<input class="tgl tgl-ios" id="cb2" type="checkbox" />
 								<label class="tgl-btn" for="cb2"></label>
 								</ul>
+
+								<ul class="tg-list">
+								{{form.tos}}
+								<label class="tgl-btn" for="{{form.tos.id_for_label}}"></label>
+								</ul>
 							</div>	
-
-
-
-							
-
 						</form>
 					</div>
 				</div>
@@ -130,44 +95,4 @@
 		</div>
 	</section>
 	
-	<!-- <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a> -->
-	<script src="{% static "js/jquery.js" %}"></script>
-	<script src="{% static "js/jquery.scrollTo.js" %}"></script>
-	<script src="{% static "js/jquery.nav.js" %}"></script>
-	<script src="{% static "js/jquery.localScroll.js" %}"></script>
-	<script src="{% static "js/bootstrap.js" %}"></script>
-	<script src="{% static "js/jquery.prettyPhoto.js" %}"></script>
-	<script src="{% static "js/isotope.js" %}"></script>
-	<script src="{% static "js/jquery.flexslider.js" %}"></script>
-	<script src="{% static "js/inview.js" %}"></script>
-	<script src="{% static "js/animate.js" %}"></script>
-	<script src="{% static "js/custom.js" %}"></script>
-	<script src="{% static "contactform/contactform.js" %}"></script>
-	<script src="{% static "js/moment.js" %}"></script>
-    <script src="{% static "js/pikaday.js" %}"></script>
-	<script>
-		//moment.locale('ar');
-			var picker = new Pikaday({
-				 
-				field: document.getElementById('{{form.birth_date.id_for_label}}'),
-				firstDay: 1,
-				minDate: new Date(1900, 1, 1),
-				maxDate: new Date({%now "Y" %}, 12, 31),
-				yearRange: [1900,{%now "Y" %}],
-				format: 'YYYY-MM-DD',
-				isRTL: true,
-				i18n: {
-					previousMonth : 'الشهر السابق',
-					nextMonth     : 'الشهر التالي',
-					months        : ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
-					weekdays      : ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
-					weekdaysShort : ['حد','ثن','ثل','ربع','خمس','جمع','سبت']
-						},
-				onSelect: function() {
-					console.log(this.getMoment().format('Do MMMM YYYY'));
-				}
-			});
-		</script>
-</body>
-
-</html>
+{% endblock %}
