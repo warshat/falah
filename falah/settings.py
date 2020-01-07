@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     'location_field.apps.DefaultConfig',
     'phonenumber_field',
+    'widget_tweaks',
 
 ]
 

@@ -26,12 +26,12 @@ urlpatterns = [
         name='django_registration_register',
     ),
 
-        path('accounts/login/',
-        LoginView.as_view(
-            form_class=authentication_form
-        ),
-        name='django_registration_register',
-    ),
+    #     path('accounts/login/',
+    #     LoginView.as_view(
+    #         form_class=authentication_form
+    #     ),
+    #     name='django_registration_register',
+    # ),
     
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')), 
