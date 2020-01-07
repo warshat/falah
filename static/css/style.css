@@ -122,7 +122,7 @@ a.scrollup i:hover {
 
 /*---------- forms ----------*/
 
-input[type=text], input[type=submit], input[type=password], textarea {
+input[type=text], input[type=submit], input[type=password], input[type=email], textarea {
 	width: 100%;
 	padding: 0.5em;
 	font-size: 1em;
@@ -170,7 +170,7 @@ blockquote cite a:visited 				{ color:#555; }
 ul, ol {
 	font-size: 1em; /* 16px */
 	line-height: 1.5; /* 24px */
-	margin: 0 0 1.5em 0;
+	margin: 0 0 1.5em 5em;
 }
 body, input, textarea {
 }
@@ -184,6 +184,7 @@ a:hover, a:active {
 	text-decoration: underline;
 }
 h1, h2, h3, h4, h5, h6 {
+	text-align: right;
 	font-weight: 200;
 	color: #312f2b;
 	line-height:1.1em;
@@ -448,6 +449,37 @@ header .logo {
 	height: 2.9em;
 	width:50%;
 }
+
+
+
+
+
+
+
+
+
+#header-wrapper input[type=email] {
+	background: rgba(227, 231, 228, 1);
+	font-family: 'Open Sans', sans serif;
+	font-size: 1.3125em;
+	border: 0;
+	text-align: center;
+	vertical-align: middle;
+	margin-bottom:0 !important;
+}
+#header-wrapper input[type=email]:focus {
+	background: #43413e;
+	color: #eff1ef;
+	transition: background 0.25 ease-in;
+	-moz-transition: background 0.25 ease-in;
+	-webkit-transition: background 0.25 ease-in;
+}
+#header-wrapper input[type=email] {
+	height: 2.9em;
+	width:50%;
+}
+
+
 
 
 
@@ -1030,6 +1062,42 @@ section#about {
 
 
 
+#contact-form input[type=email], .contactForm textarea {
+	background: rgba(227, 231, 228, 1);
+	font-family: 'Open Sans', sans serif;
+	border: 0;
+	font-size:16px;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.contactForm textarea {
+	height: 156px;
+}
+
+#contact-form input[type=email]:focus, .contactForm textarea:focus {
+	background: #fff;
+	color: #555;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	transition: background 0.25 ease-in;
+	-moz-transition: background 0.25 ease-in;
+	-webkit-transition: background 0.25 ease-in;
+}
+#contact-form input[type=email] {
+	height: 60px;
+	margin-bottom:30px;
+}
+
+
+
+
+
+
+
+
+
 #contact-form input[type=submit] {
 	color: #fff;
 	width: 185px;
@@ -1038,7 +1106,7 @@ section#about {
 	font-size: 16px;
 	padding:0.5em;
 	letter-spacing: 0.05em;
-	margin: 0 0 20px 0;
+	margin: 20px 0 20px 0;
 	display: block;
 	border: 0;
 	text-transform: none;
@@ -1780,4 +1848,85 @@ i.icon-white {
 	#contact-form input[type=submit] {
 		width: 100%;
 	}
+}
+
+
+
+
+
+
+
+
+/* -------------------------------- */
+/* ------own addings----- */
+/* -------------------------------- */
+
+
+
+
+/* ------checkbox for isWorker----- */
+
+
+.tgl {
+	display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+	box-sizing: border-box;
+}
+
+.tgl + .tgl-btn {
+	outline: 0;
+	display: block;
+	width: 4em;
+	height: 2em;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+	position: relative;
+	display: block;
+	content: "";
+	width: 50%;
+	height: 100%;
+}
+.tgl + .tgl-btn:after {
+	left: 0;
+}
+.tgl + .tgl-btn:before {
+	display: none;
+}
+.tgl:checked + .tgl-btn:after {
+	left: 50%;
+}
+.tgl-ios + .tgl-btn {
+	background: #fbfbfb;
+	border-radius: 2em;
+	padding: 2px;
+	transition: all 0.4s ease;
+	border: 1px solid #e8eae9;
+}
+.tgl-ios + .tgl-btn:after {
+	border-radius: 2em;
+	background: #fbfbfb;
+	transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 4px 0 rgba(0, 0, 0, .08);
+}
+.tgl-ios + .tgl-btn:hover:after {
+	will-change: padding;
+}
+.tgl-ios + .tgl-btn:active {
+	box-shadow: inset 0 0 0 2em #e8eae9;
+}
+.tgl-ios + .tgl-btn:active:after {
+	padding-right: 0.8em;
+}
+.tgl-ios:checked + .tgl-btn {
+	background: #86d993;
+}
+.tgl-ios:checked + .tgl-btn:active {
+	box-shadow: none;
+}
+.tgl-ios:checked + .tgl-btn:active:after {
+	margin-left: -0.8em;
 }
