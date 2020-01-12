@@ -13,6 +13,8 @@
 	<link rel="{% static "shortcut icon" %}" href={% static "img/favicon.ico" %}">
 	<link href="{% static "css/pikaday.css" %}" rel="stylesheet" type="text/css">
 
+{% block header%}	
+{% endblock %}
 </head>
 
 <body>
@@ -86,6 +88,9 @@
 				}
 			});
 		</script>
+
+	{% block body_end%}	
+	{% endblock %}			
 </body>
 
 </html>

@@ -69,6 +69,9 @@ cat <<EOT >> /etc/apache2/sites-available/$PROJECT_NAME.conf
 </VirtualHost>
 EOT
 
+usermod -a -G vagrant www-data
+
+
 # disable the default virtual host config file i.e 000.default.conf
 a2dissite 000-default.conf
 
