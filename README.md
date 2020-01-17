@@ -41,3 +41,11 @@ You can reach to the website on [localhost:8000/](localhost:8000/), or YOUR_IP:8
 
 This directory is synced with the VM so any changes you make here will affect 
 the VM.
+
+
+### Suggested names:
+- Taysir
+- Muyasser
+- Fareed
+- Bab Rizq
+- Mehanji
