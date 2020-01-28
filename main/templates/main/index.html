@@ -1,12 +1,51 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+	
+<section id="contact" class="section green">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="cform" id="contact-form">
+
+                    <form method="POST">
+                   
+                            <div class="span1">
+                        
+                                    <h5>البحث عن</h5>
+                             </div>
+                             <div class="span4">
+                                    <input type="text" class="form-control"
+                                        placeholder="علی سبيل المثال: سمكري، مكانيكي سيارات" />
+                                
+                            </div>
 
 
+                            <div class="span1">
+                                    <h5>في</h5>
+                             </div>
+                             <div class="span4">
+                                    <select name="search categories" class="form-control">
+                                        <option value="عمان" selected>عمان</option>
+                                        <option value="اربد">اربد</option>
+                                        <option value="العقبة">العقبة</option>
+                                        <option value="معان">معان</option>
+                                        <option value="الكرك">الكرك</option>
+                                        <option value="الطفيلة">الطفيلة</option>
+                                        <option value="الزرقاء">الزرقاء</option>
+                                    </select>
+                            </div>
 
 
+                           <div class="span1">
+										<input type="submit" value="بحث" class="btn btn-theme pull-right">
+							</div>
 
-
-
-
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+	
 {% endblock %}

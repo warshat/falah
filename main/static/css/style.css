@@ -37,10 +37,34 @@ CONTENTS:
 /* =========================================================
 01. General
 ============================================================ */
+* {
+	box-sizing: border-box;
+  }
+  
 
 div, article, section, header, footer, nav, li {
 	position:relative; 
 }
+
+/* .wrapper div {
+    float: right; 
+}
+.wrapper div+div {
+    right: 10px;
+}
+.wrapper div+div+div {
+    right: 20px;
+}
+.wrapper div+div+div+div {
+    right: 30px;
+}
+.wrapper div+div+div+div+div {
+    right: 40px;
+}
+ */
+
+
+
 .group:after {
 	display:block;
 	height:0;
@@ -122,7 +146,7 @@ a.scrollup i:hover {
 
 /*---------- forms ----------*/
 
-input[type=text], input[type=submit], input[type=password], input[type=email], textarea {
+input[type=text], input[type=submit], input[type=password], input[type=email], textarea , select{
 	width: 100%;
 	padding: 0.5em;
 	font-size: 1em;
@@ -131,7 +155,7 @@ input[type=text], input[type=submit], input[type=password], input[type=email], t
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
-input, button, select, textarea {
+input, button, select, textarea, select {
 	font-family:'Open Sans', Arial, sans-serif;
 }
 /* =========================================================
@@ -172,7 +196,7 @@ ul, ol {
 	line-height: 1.5; /* 24px */
 	margin: 0 0 1.5em 5em;
 }
-body, input, textarea {
+body, input, textarea, select {
 }
 
 a {
@@ -183,7 +207,7 @@ a {
 a:hover, a:active {
 	text-decoration: underline;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, label {
 	text-align: right;
 	font-weight: 200;
 	color: #312f2b;
@@ -398,6 +422,34 @@ header .logo {
 
 
 /* --- Header subscribe form --- */
+
+
+#header-wrapper select {
+	background: rgba(227, 231, 228, 1);
+	font-family: 'Open Sans', sans serif;
+	font-size: 1.3125em;
+	border: 0;
+	text-align: center;
+	vertical-align: middle;
+	margin-bottom:0 !important;
+}
+#header-wrapper select:focus {
+	background: #43413e;
+	color: #eff1ef;
+	transition: background 0.25 ease-in;
+	-moz-transition: background 0.25 ease-in;
+	-webkit-transition: background 0.25 ease-in;
+}
+#header-wrapper select {
+	height: 2.9em;
+	width:50%;
+}
+
+
+
+
+
+
 
 #header-wrapper input[type=text] {
 	background: rgba(227, 231, 228, 1);
@@ -1003,6 +1055,27 @@ section#about {
 .contactForm textarea {
 	height: 156px;
 }
+
+
+
+
+#contact-form select:focus, .contactForm textarea:focus {
+	background: #fff;
+	color: #555;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	transition: background 0.25 ease-in;
+	-moz-transition: background 0.25 ease-in;
+	-webkit-transition: background 0.25 ease-in;
+}
+#contact-form select {
+	height: 60px;
+	margin-bottom:30px;
+}
+
+
+
 
 #contact-form input[type=text]:focus, .contactForm textarea:focus {
 	background: #fff;
@@ -1930,3 +2003,6 @@ i.icon-white {
 .tgl-ios:checked + .tgl-btn:active:after {
 	margin-left: -0.8em;
 }
+
+
+
